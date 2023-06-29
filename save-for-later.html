@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Save for Later</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Save for Later</h1>
+  
+  <div id="saved-items-container">
+    <!-- The saved items will be dynamically inserted here -->
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Retrieve the saved items from localStorage
+      var savedItems = localStorage.getItem("savedItems");
+      
+      // Check if there are saved items
+      if (savedItems) {
+        savedItems = JSON.parse(savedItems); // Convert the saved items from JSON string to an array
+        
+        // Loop through the saved items and display them
+        for (var i = 0; i < savedItems.length; i++) {
+          var item = savedItems[i];
+          var itemHtml = '<div class="saved-item">' +
+                          '<img src="' + item + '" alt="Saved Item">' +
+                          '</div>';
+          $("#saved-items-container").append(itemHtml);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
